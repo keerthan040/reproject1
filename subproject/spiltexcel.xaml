@@ -1,4 +1,12 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="spiltexcel" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="800,1775.33333333333" sap2010:WorkflowViewState.IdRef="spiltexcel_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="spiltexcel" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_intranno" Type="InArgument(x:Int32)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>772.666666666667,1713.33333333333</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>spiltexcel_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="34">
       <x:String>System.Activities</x:String>
@@ -38,7 +46,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="52">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="32">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -73,12 +81,14 @@
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="spiltexcel" sap:VirtualizedContainerService.HintSize="552,1710.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="spiltexcel" sap:VirtualizedContainerService.HintSize="552,1648.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strfilepath" />
       <Variable x:TypeArguments="x:String" Name="renamed" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt_suppliers" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt_industry" />
+      <Variable x:TypeArguments="x:Int32" Name="a" />
+      <Variable x:TypeArguments="x:Int32" Name="b" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -93,7 +103,7 @@
         <InArgument x:TypeArguments="x:String">C:\Users\HP\Downloads</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="510,282" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[Directory.GetFiles(strfilepath , &quot;UiPath_Demo_Suppliers_Export_&quot;+Now.ToString(&quot;ddd MMM dd yyyy HH_mm&quot;)+&quot;*&quot;)]">
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="510,282" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[Directory.GetFiles(strfilepath , &quot;UiPath_Demo_Suppliers_Export_&quot;+Now.ToString(&quot;ddd MMM dd yyyy HH_&quot;)+&quot;*&quot;)]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="x:String">
           <ActivityAction.Argument>
@@ -117,8 +127,8 @@
         </ActivityAction>
       </ui:ForEach.Body>
     </ui:ForEach>
-    <ui:RenameFileX DisplayName="Rename File" FilePath="[renamed]" sap:VirtualizedContainerService.HintSize="510,145.333333333333" sap2010:WorkflowViewState.IdRef="RenameFileX_1" KeepExtension="True" NewName="[&quot;keerthanchowdary&quot;+Now.ToString(&quot;yyyy-MM-dd mm&quot;)]" />
-    <ui:ReadCsvFile DataTable="[dt_suppliers]" Delimitator="Comma" DisplayName="Read CSV" FilePath="[strfilepath+&quot;\keerthanchowdary&quot;+Now.ToString(&quot;yyyy-MM-dd mm&quot;)+&quot;.csv&quot;]" sap:VirtualizedContainerService.HintSize="510,156.666666666667" sap2010:WorkflowViewState.IdRef="ReadCsvFile_1" />
+    <ui:RenameFileX DisplayName="Rename File" FilePath="[renamed]" sap:VirtualizedContainerService.HintSize="510,145.333333333333" sap2010:WorkflowViewState.IdRef="RenameFileX_1" KeepExtension="True" NewName="[&quot;keerthanchowdary&quot;+Now.ToString(&quot;yyyy-MM-dd &quot;)+in_intranno.ToString]" />
+    <ui:ReadCsvFile DataTable="[dt_suppliers]" Delimitator="Comma" DisplayName="Read CSV" FilePath="[strfilepath+&quot;\keerthanchowdary&quot;+Now.ToString(&quot;yyyy-MM-dd &quot;)+in_intranno.ToString+&quot;.csv&quot;]" sap:VirtualizedContainerService.HintSize="510,156.666666666667" sap2010:WorkflowViewState.IdRef="ReadCsvFile_1" />
     <ui:RemoveDuplicateRows DataTable="[dt_suppliers]" DisplayName="Remove Duplicate Rows" sap:VirtualizedContainerService.HintSize="510,80.6666666666667" sap2010:WorkflowViewState.IdRef="RemoveDuplicateRows_1" OutputDataTable="[dt_suppliers]" />
     <Assign sap:VirtualizedContainerService.HintSize="510,62" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
@@ -162,11 +172,10 @@
                 </scg:List>
               </ui:FilterDataTable.SelectColumns>
             </ui:FilterDataTable>
-            <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[dt_finaloutput]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="434,114.666666666667" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="[CurrentRow(&quot;Industry&quot;).ToString]" WorkbookPath="[&quot;D:\project1files\&quot;+Now.ToString(&quot;dd hh mm&quot;)+&quot;.xlsx&quot;]" />
+            <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[dt_finaloutput]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="434,114.666666666667" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="[CurrentRow(&quot;Industry&quot;).ToString]" WorkbookPath="[&quot;D:\project1files\&quot;+Now.ToString(&quot;dd hh &quot;)+in_intranno.ToString+&quot;.xlsx&quot;]" />
           </Sequence>
         </ActivityAction>
       </ui:ForEachRow.Body>
     </ui:ForEachRow>
-    <Delay Duration="00:00:55" sap:VirtualizedContainerService.HintSize="510,22" sap2010:WorkflowViewState.IdRef="Delay_1" />
   </Sequence>
 </Activity>

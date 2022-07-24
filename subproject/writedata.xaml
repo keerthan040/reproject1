@@ -5,7 +5,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>800,3206.66666666667</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>772.666666666667,3414.66666666667</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>writedata_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="50">
@@ -65,9 +65,10 @@
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>NPOI</AssemblyReference>
       <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="writedata" sap:VirtualizedContainerService.HintSize="476,3142" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="writedata" sap:VirtualizedContainerService.HintSize="476,3350" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ui:Image" Name="screenshot" />
     </Sequence.Variables>
@@ -238,6 +239,28 @@
         </ui:Target>
       </ui:Click.Target>
     </ui:Click>
+    <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'I'" sap:VirtualizedContainerService.HintSize="434,106" sap2010:WorkflowViewState.IdRef="Click_11" KeyModifiers="None" MouseButton="BTN_LEFT">
+      <ui:Click.CursorPosition>
+        <ui:CursorPosition Position="Center">
+          <ui:CursorPosition.OffsetX>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:CursorPosition.OffsetX>
+          <ui:CursorPosition.OffsetY>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:CursorPosition.OffsetY>
+        </ui:CursorPosition>
+      </ui:Click.CursorPosition>
+      <ui:Click.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="8894682b-6177-483c-b675-1418a568f0ed" InformativeScreenshot="e7459828ed17d3b018f0630e9f8cfbce" Selector="&lt;html app='chrome.exe' title='UiPath Demo App' /&gt;&lt;webctrl aaname='' tag='I' /&gt;">
+          <ui:Target.TimeoutMS>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:Target.TimeoutMS>
+          <ui:Target.WaitForReady>
+            <InArgument x:TypeArguments="ui:WaitForReady" />
+          </ui:Target.WaitForReady>
+        </ui:Target>
+      </ui:Click.Target>
+    </ui:Click>
     <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'INPUT  DatePicker235-la...'" sap:VirtualizedContainerService.HintSize="434,134" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="[now.AddDays(-43).ToString(&quot;MM/dd/yyyy&quot;)]">
       <ui:TypeInto.Target>
         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="4c34ca58-f28c-47a4-add9-a1f0d9582a45" InformativeScreenshot="ac39ba77b90ba3fb6994fea26d7194ca" Selector="&lt;html app='chrome.exe' title='UiPath Demo App' /&gt;&lt;webctrl aria-role='combobox' tag='INPUT' type='text' /&gt;">
@@ -362,7 +385,7 @@
         </ui:Target>
       </ui:TakeScreenshot.Target>
     </ui:TakeScreenshot>
-    <ui:SaveImage DisplayName="Save Image" FileName="[&quot;D:\project1files\&quot; +Now.ToString(&quot;MMddyyhhmm&quot;)+&quot;.png&quot;]" sap:VirtualizedContainerService.HintSize="434,136" sap2010:WorkflowViewState.IdRef="SaveImage_1" Image="[screenshot]" />
+    <ui:SaveImage DisplayName="Save Image" FileName="[&quot;D:\project1files\&quot; +Now.ToString(&quot;MMddyyhhmmss&quot;)+&quot;.png&quot;]" sap:VirtualizedContainerService.HintSize="434,136" sap2010:WorkflowViewState.IdRef="SaveImage_1" Image="[screenshot]" />
     <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBetweenKeys="{x:Null}" SimulateType="{x:Null}" Activate="True" DelayBefore="0" DelayMS="200" DeselectAfter="True" DisplayName="Type Into 'INPUT'" EmptyField="True" sap:VirtualizedContainerService.HintSize="434,134" sap2010:WorkflowViewState.IdRef="TypeInto_3" SendWindowMessages="True" Text="%[k(tab)]">
       <ui:TypeInto.Target>
         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a125f5b8-f524-4bae-9de5-c376c7cdc030" InformativeScreenshot="aa08c9c25569cf7b79def15e52e3d56c" Selector="&lt;html app='chrome.exe' title='UiPath Demo App' /&gt;&lt;webctrl tag='INPUT' /&gt;">
@@ -397,5 +420,6 @@
         </ui:Target>
       </ui:Click.Target>
     </ui:Click>
+    <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="434,22" sap2010:WorkflowViewState.IdRef="Delay_1" />
   </Sequence>
 </Activity>
